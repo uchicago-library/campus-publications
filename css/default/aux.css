@@ -1,0 +1,29 @@
+/* crossQuery RESULTS stylesheet */
+
+body {
+   font-family: Arial, sans-serif;
+#   background-color: silver;
+   background: #d3e0e2 url(../../icons/default/bg.gif) repeat-x;
+ font-size: small;
+	 color: #333;
+}
+
+form {
+	display: inline;
+}
+
+.clear {
+	clear: both;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.right {
+  float: right;
+}
+.left {
+   float: left;
+}

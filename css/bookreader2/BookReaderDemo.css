@@ -1,0 +1,186 @@
+/*
+ * Custom overrides for BookReader Demo.
+ */
+
+/* Skip link. */
+#skip {
+	font-family: Ariel, sans-serif;
+	font-size: 12px;
+	left: 0px;
+	list-style: none outside none;
+	margin: 0;
+	position: absolute;
+	right: 0px;
+	text-align: center;
+	top: 0px;
+	z-index: 9999;
+}
+#skip li {
+	list-style-type: none;
+}
+#skip a { 
+	left: -999em;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+}
+#skip a:focus, #skip a:active {
+	background: #333333;
+	border-bottom: 1px solid #0E0E0E;
+	color: #FFFFFF;
+	height: 1em;
+	left: 0;
+	padding: 1em 0;
+	position: absolute;
+	text-decoration: none;
+	width: 100%;
+}
+
+#breadcrumbs {
+	margin-left: 10px;
+	position: relative;
+	top: 10px;
+}
+
+/* Hide print and embed functionality */
+#BRtoolbar .embed {
+    display: none;
+}
+.print {
+    display: none;
+}
+form#booksearch button:focus {
+	background-color: white;
+	color: black;
+}
+button.BRicon.play,
+button.BRicon.read {
+	display: none;
+}
+
+a.logo {
+	background: none;
+	height: auto;
+	float: none;
+	margin: 0;
+	width: auto;
+}
+.BookReaderSearchHilite {
+	opacity: 0.33;
+    	filter: alpha(opacity = 33);
+	background-color: #ffa337;
+}
+#BRtoolbar {
+	font-size: 12px;
+}
+#BRtoolbar a:link,
+#BRtoolbar a:visited,
+#BRtoolbar a:hover,
+#BRtoolbar a:active {
+	color: black;
+	text-decoration: none;
+}
+#BRtoolbar a:hover,
+#BRtoolbar a:active,
+#BRtoolbar a:focus {
+	text-decoration: underline;
+}
+#BRtoolbar a.homelink:link, 
+#BRtoolbar a.homelink:visited, 
+#BRtoolbar a.homelink:hover, 
+#BRtoolbar a.homelink:active {
+	font-size: 16px;
+	font-weight: bold;
+}
+.arrow {
+	font-size: 9px;
+	padding: 0 0.25em;
+}
+
+#BRinfo {
+	font-size: 16px;
+}
+#BRinfo dl {
+	float: left;
+	margin-bottom: 5px;
+	width: 530px;
+}
+#BRinfo dt {
+	clear: left;
+	float: left;
+	font-weight: bold;
+	width: 150px;
+}
+#BRinfo dd {
+	float: left;
+	width: 380px;
+}
+#BRinfo p {
+	margin-bottom: 20px;
+}
+.BRfloatMeta p {
+	font-size: 16px;
+	line-height: inherit;
+}
+.BRfloat a.floatShut:focus {
+	background-position:0 -16px;
+}
+#BRcontainer {
+	bottom: 40px;
+	top: 40px;
+}
+div#BRnavpos {
+	margin-right: 400px;
+}
+div#BRpage {
+	width: 400px;
+}
+#jumptopageform {
+	float: left;
+	margin-right: 9px;
+}
+form#jumptopageform input[type=search] {
+    height: 22px;
+    line-height: 22px;
+    font-family: "Arial", sans-serif;
+    font-size: 13px;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: field;
+    margin: 6px 0 0 0;
+    padding: 0;
+    border: 1px inset #ccc;
+    outline: none;
+    width: 50px;
+}
+form#jumptopageform button {
+    width: 30px;
+    height: 24px;
+    line-height: 24px;
+    border: none;
+    background-color: #000;
+    text-align: center;
+    color: #fff;
+    font-family: "News Gothic MT","Trebuchet MS",Geneva,Helvetica,sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin: 8px 0 0 5px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+form#jumptopageform button:focus {
+	background-color: white;
+	color: black;
+}
+#BRnavCntlBtm a {
+	bottom: 0px;
+	left: 0px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+#BRnavCntlBtm a:focus {
+	outline: 1px dotted black;
+}
