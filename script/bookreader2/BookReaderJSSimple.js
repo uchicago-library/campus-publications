@@ -499,7 +499,7 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 
 	br.getPageURI = function(index, reduce, rotate) {
 		var id = getUrlVars()['docId'];
-		return 'http://xtf.lib.uchicago.edu:8180/campub/data/bookreader/' + id + '/' + bookreaderJSON['pages'][index]['imgFile'];
+		return 'http://campub-xtf.lib.uchicago.edu/xtf/data/bookreader/' + id + '/' + bookreaderJSON['pages'][index]['imgFile'];
 	}
 
 	br.getPageSide = function(index) {
@@ -905,7 +905,11 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 	/* Add title to breadcrumbs. */
 	$('#breadcrumbs').append(
 		" <span class='arrow'>&gt;</span> " +
-		bookreaderJSON['meta']['title']
+        "<a href='/search?f1-title=" +
+		encodeURI(bookreaderJSON['meta']['title']) +
+        "'>" +
+		bookreaderJSON['meta']['title'] +
+        "</a>"
 	);
 
 	/* Add volume to breadcrumbs. */
@@ -924,7 +928,7 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 
 	/* Add date to breadcrumbs. */
 	$('#breadcrumbs').append(
-		", " + bookreaderJSON['meta']['date']
+		", " + bookreaderJSON['meta']['human-readable-date']
 	);
 
 	/* searchTerm is undefined here... */

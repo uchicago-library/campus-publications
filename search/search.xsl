@@ -19,7 +19,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:variable name="id" select="sort-identifier"/>
 	<xsl:variable name="src" select="
 		concat(
-			'http://xtf.lib.uchicago.edu:8180/campub/data/bookreader/',
+			'http://campub-xtf.lib.uchicago.edu/xtf/data/bookreader/',
 			$id,
 			'/',
 			$id,
@@ -78,6 +78,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:variable name="day">
 		<xsl:value-of select="number(substring-after(substring-after(range-date, '-'), '-'))"/>
 	</xsl:variable>
+<!--
 	<xsl:variable name="date">
 		<xsl:choose>
 			<xsl:when test="contains(range-date, '-')">
@@ -88,6 +89,10 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
+-->
+	<xsl:variable name="date">
+        <xsl:value-of select="human-readable-date"/>
+    </xsl:variable>
     <xsl:variable name="number0">
         <xsl:value-of select="
                 substring-after(substring-after(substring-after(sort-identifier, '-'), '-'), '-')

@@ -40,11 +40,15 @@ function queryString() {
 }
 
 $(document).ready(function() {
+    var campubtimeout;
 	$('#navbrowse').mouseover(function() {
+        clearTimeout(campubtimeout);
 		$('#subnavbrowse').show();
 	});
 	$('#navbrowse').mouseout(function() {
-		$('#subnavbrowse').hide();
+        campubtimeout = setTimeout(function () {
+	        $('#subnavbrowse').hide();
+        }, 250);
 	});
 
 	/* 

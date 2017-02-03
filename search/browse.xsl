@@ -21,15 +21,30 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:template match="facet[@field='facet-category']/group/group">
 <xsl:variable name="value">
 <xsl:value-of select="
-	//docHit/meta[
-		facet-category = concat(
-			$category,
-			'::',
-			current()/@value)
-	]/display-title
+    substring-after(
+	    //docHit/meta[
+		    facet-category = concat(
+			    $category,
+			    '::',
+			    current()/@value)
+	    ]/facet-category,
+        '::'
+    )
 "/>
 </xsl:variable>
-<li><a href="/search/?f1-title={@value}"><xsl:value-of select="$value"/></a></li>
+<li>
+    <a href="/search/?f1-title={@value}">
+        <xsl:value-of select="$value"/>
+        <xsl:choose>
+            <xsl:when test="$value='Cap and Gown'"> (1895-1958)</xsl:when>
+            <xsl:when test="$value='Quarterly Calendar'"> (1892-1896)</xsl:when>
+            <xsl:when test="$value='University Record'"> (1896-1908)</xsl:when>
+            <xsl:when test="$value='University Record (New Series)'"> (1915-1933)</xsl:when>
+            <xsl:when test="$value='University of Chicago Magazine'"> (1908-1995)</xsl:when>
+            <xsl:when test="$value='University of Chicago Record'"> (1967-1981)</xsl:when>
+        </xsl:choose>
+    </a>
+</li>
 </xsl:template>
 
 </xsl:stylesheet>

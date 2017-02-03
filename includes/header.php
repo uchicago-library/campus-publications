@@ -26,7 +26,7 @@
 					<div id="subnavbrowse">
 						<ul>
 							<li><a href="/search/?browse-category=university">University titles</a></li>
-							<!--<li><a href="/search/?browse-category=student">Student titles</a></li>-->
+							<li><a href="/search/?browse-category=student">Student titles</a></li>
 							<li><a href="/search/?browse-date=yes">Dates</a></li>
 						</ul>
 					</div>

@@ -2,5 +2,5 @@
 	<link href="/css/bootstrap.css" type="text/css" rel="stylesheet" />
 	<link href="/css/bootstrap-responsive.css" type="text/css" rel="stylesheet" />
 	<link href="/css/index.css" type="text/css" rel="stylesheet" />
-	<script src="/script/jquery-1.7.1.min.js" type="text/javascript"></script>
+	<script src="/script/jquery-3.1.1.min.js" type="text/javascript"></script>
 	<script src="/script/index.js" type="text/javascript"></script>
