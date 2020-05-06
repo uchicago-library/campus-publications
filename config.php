@@ -6,9 +6,9 @@
  * them.
  */
 
+//'xtf' => 'http://campub-xtf.lib.uchicago.edu/xtf/',
 $config = array(
-    #'xtf' => 'http://xtf.lib.uchicago.edu:8180/campub/'
-    'xtf' => 'http://campub-xtf.lib.uchicago.edu/xtf/',
+    'xtf' => 'http://xtf.lib.uchicago.edu:8180/campub/'
 );
 
 ?>

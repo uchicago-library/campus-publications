@@ -123,11 +123,16 @@ function get_box($line, $numberOfWordsBefore) {
 	);
 }
 
+//'relation' => array_pop(explode(" ", $xml->getElementsByTagName('facet-volume')->item(0)->nodeValue)) . ':0',
 function get_meta($xml) {
+    $title_tag = $xml->getElementsByTagName('facet-title')->item(0)->nodeValue;
+    $volume_num = array_pop(explode(" ", array_pop(explode("::", $title_tag))));
+    $volume_num = ltrim($volume_num, "0");
+    
 	$meta = array(
 		'date' => $xml->getElementsByTagName('range-date')->item(0)->nodeValue,
         'human-readable-date' => $xml->getElementsByTagName('human-readable-date')->item(0)->nodeValue,
-		'relation' => array_pop(explode(" ", $xml->getElementsByTagName('facet-volume')->item(0)->nodeValue)) . ':0',
+		'relation' => $volume_num . ':0',
 		'title' => array_shift(explode(":", $xml->getElementsByTagName('facet-title')->item(0)->nodeValue)),
 		'identifier' => $xml->getElementsByTagName('sort-identifier')->item(0)->nodeValue
 	);

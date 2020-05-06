@@ -37,6 +37,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         <xsl:value-of select="$value"/>
         <xsl:choose>
             <xsl:when test="$value='Cap and Gown'"> (1895-1958)</xsl:when>
+            <xsl:when test="$value='Daily Maroon'"> (1902-1987)</xsl:when>
+            <xsl:when test="$value='Medicine on the Midway'"> (1944-1981)</xsl:when>
             <xsl:when test="$value='Quarterly Calendar'"> (1892-1896)</xsl:when>
             <xsl:when test="$value='University Record'"> (1896-1908)</xsl:when>
             <xsl:when test="$value='University Record (New Series)'"> (1915-1933)</xsl:when>

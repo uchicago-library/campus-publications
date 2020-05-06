@@ -36,7 +36,7 @@ These titles include official administrative policies and reports as well as
 general news and feature stories describing activities of faculty, students,
 alumni, trustees, donors, and friends of the University.</p>
 
-<p><a href="/search/?browse-category=university">Browse University publications.</a></p>
+<p><a href="/search/?browse-category=university">Browse available University publications.</a></p>
 </div><!--/span4-->
 
 <div class="span4">	
@@ -48,7 +48,10 @@ journals, and newsletters, among others. Some student titles have had lengthier
 runs (the Maroon has been published continuously since 1900), while others have
 appeared only once or twice.</p>
 
-<p><a href="/search/?browse-category=student">Browse student publications.</a></p>
+<p>Currently, this site includes issues of the College yearbook, Cap and
+Gown; additional publications will be added over time.</p>
+
+<p><a href="/search/?browse-category=student">Browse available student publications.</a></p>
 </div>
 <!--/span4-->
 </div><!--/row-->

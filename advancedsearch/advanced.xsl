@@ -20,10 +20,11 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 </xsl:template>
 -->
 
-<xsl:template match="facet[@field='facet-category']">
-<h3>Restrict your search to a university publication</h3>
+<xsl:template match="facet[@field='facet-title']">
+<h3>Restrict your search to an individual publication</h3>
 <div class="advancedsearchcheckboxes advancedsearchbox">
-<xsl:apply-templates select="group[@value='university']/group">
+<!--<xsl:apply-templates select="group[@value='university']/group">-->
+<xsl:apply-templates select="group">
 	<xsl:with-param name="firstpart" select="'2'"/>
 </xsl:apply-templates>
 </div>

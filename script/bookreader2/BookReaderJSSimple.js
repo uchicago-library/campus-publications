@@ -499,7 +499,10 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 
 	br.getPageURI = function(index, reduce, rotate) {
 		var id = getUrlVars()['docId'];
-		return 'http://campub-xtf.lib.uchicago.edu/xtf/data/bookreader/' + id + '/' + bookreaderJSON['pages'][index]['imgFile'];
+        var image_number = bookreaderJSON['pages'][index]['imgFile'];
+        image_number = image_number.substring(image_number.length - 8).substring(0, 4);
+		// return 'http://165.227.109.181:5000/' + id + '_' + image_number + '/jpg?width=808&height=1024';
+		return 'http://xtf.lib.uchicago.edu:8180/campub/data/bookreader/' + id + '/0000' + image_number + '.jpg';
 	}
 
 	br.getPageSide = function(index) {
@@ -572,22 +575,36 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 			'12': 'December'
 		};
 
-		var date = bookreaderJSON.meta.date;
-		var relation = bookreaderJSON.meta.relation;
+        if (bookreaderJSON.ia.startsWith('mvol-0004') || bookreaderJSON.ia.startsWith('mvol-0447')) {
+            var date = bookreaderJSON.meta['human-readable-date'];
 
-		var dl = $('<dl style="margin-bottom: 20px;"></dl>');
-		jInfoDiv.find('.BRfloatMeta').append(dl);
-		dl.append('<dt>Title:</dt>');
-		dl.append('<dd>' + bookreaderJSON.meta.title + '</dd>');
-		dl.append('<dt>Date:</dt>');
-		dl.append(
-			'<dd>' + 
-			'Vol. ' +
-			relation.split(':')[0].replace(/^0*/, '') +
-			', ' + 
-			date +
-			'</dd>'
-		);
+		    var dl = $('<dl style="margin-bottom: 20px;"></dl>');
+    		jInfoDiv.find('.BRfloatMeta').append(dl);
+    		dl.append('<dt>Title:</dt>');
+    		dl.append('<dd>' + bookreaderJSON.meta.title + '</dd>');
+    		dl.append('<dt>Date:</dt>');
+    		dl.append(
+    			'<dd>' + date + '</dd>'
+	    	);
+        } else {
+		    var date = bookreaderJSON.meta.date;
+		    var relation = bookreaderJSON.meta.relation;
+
+		    var dl = $('<dl style="margin-bottom: 20px;"></dl>');
+    		jInfoDiv.find('.BRfloatMeta').append(dl);
+    		dl.append('<dt>Title:</dt>');
+    		dl.append('<dd>' + bookreaderJSON.meta.title + '</dd>');
+    		dl.append('<dt>Date:</dt>');
+    		dl.append(
+    			'<dd>' + 
+	    		'Vol. ' +
+	    		relation.split(':')[0].replace(/^0*/, '') +
+	    		', ' + 
+	    		date +
+	    		'</dd>'
+	    	);
+        }
+
 		if ("description.note" in bookreaderJSON['meta']) {
 			dl.append('<dt>Description:</dt>');
 			dl.append('<dd>' + bookreaderJSON['meta']['description.note'] + '</dd>');
@@ -698,6 +715,8 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 	br.buildShareDiv = function(jShareDiv) {
 		var pageView = 'http://pi.lib.uchicago.edu/1001/dig/campub/' + getUrlVars()['docId'] + '/' + getObjectNumber();
 		var bookView = 'http://pi.lib.uchicago.edu/1001/dig/campub/' + getUrlVars()['docId'];
+		var titleView = bookView.match(/^[^-]+-[^-]+/g)[0];
+
 	    var self = this;
 	    
 	    var jForm = $([
@@ -710,6 +729,10 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 	            '<fieldset>',
 	                '<label for="booklink">Link to this volume:</label>',
 	                '<input type="text" name="booklink" id="booklink" value="' + bookView + '"/>',
+	            '</fieldset>',
+	            '<fieldset>',
+	                '<label for="booklink">Link to this title:</label>',
+	                '<input type="text" name="booklink" id="booklink" value="' + titleView + '"/>',
 	            '</fieldset>',
 	            '<fieldset class="center">',
 	                '<button type="button" onclick="$.fn.colorbox.close();">Finished</button>',
@@ -913,23 +936,31 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 	);
 
 	/* Add volume to breadcrumbs. */
-	$('#breadcrumbs').append(
-		", Vol. " + bookreaderJSON['meta']['relation'].split(':')[0].replace(/^0*/, '')
-	);
+    if (!bookreaderJSON.ia.startsWith('mvol-0004') && !bookreaderJSON.ia.startsWith('mvol-0447')) {
+	    $('#breadcrumbs').append(
+		    ", Vol. " + bookreaderJSON['meta']['relation'].split(':')[0].replace(/^0*/, '')
+	    );
+    }
 
 	/* Optionally, add issue to breadcrumbs. */
 	//var iss = bookreaderJSON['meta']['relation'].split(':')[1];
-    var iss = parseInt(getUrlVars()['docId'].split('-').pop(), 10);
-	if (iss != '0') {
-		$('#breadcrumbs').append(
-			", No. " + iss
-		);
-	}
+    if (!bookreaderJSON.ia.startsWith('mvol-0004') && !bookreaderJSON.ia.startsWith('mvol-0447')) {
+        var iss = parseInt(getUrlVars()['docId'].split('-').pop(), 10);
+	    if (iss != '0') {
+		    $('#breadcrumbs').append(
+			    ", No. " + iss
+		    );
+	    }
+    }
 
 	/* Add date to breadcrumbs. */
 	$('#breadcrumbs').append(
 		", " + bookreaderJSON['meta']['human-readable-date']
 	);
+
+    if (bookreaderJSON.ia.startsWith('mvol-0447') && bookreaderJSON['meta']['identifier'].length == 22) {
+        $('#breadcrumbs').append(', Session ' + bookreaderJSON['meta']['identifier'].substr(21, 1));
+    }
 
 	/* searchTerm is undefined here... */
 	var searchTerm = getUrlVars()['query'];

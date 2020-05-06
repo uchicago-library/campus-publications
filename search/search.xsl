@@ -19,7 +19,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:variable name="id" select="sort-identifier"/>
 	<xsl:variable name="src" select="
 		concat(
-			'http://campub-xtf.lib.uchicago.edu/xtf/data/bookreader/',
+			'http://xtf.lib.uchicago.edu:8180/campub/data/bookreader/',
 			$id,
 			'/',
 			$id,
@@ -35,6 +35,16 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						$id,
 						';query=',
 						//param[@name='keyword']/@value
+					)
+				"/>
+			</xsl:when>
+			<xsl:when test="/crossQueryResult/parameters/param[@name='text']">
+				<xsl:value-of select="
+					concat(
+						'/view/?docId=',
+						$id,
+						';query=',
+						//param[@name='text']/@value
 					)
 				"/>
 			</xsl:when>
@@ -103,6 +113,32 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     </xsl:variable>
 	<xsl:variable name="title">
         <xsl:choose>
+            <xsl:when test="substring-before(substring-after(sort-identifier, '-'), '-') = '0004'">
+		        <xsl:value-of select="
+	        		concat(
+		        		substring-before(facet-sidebartitle, '::'),
+		    		    ', ',
+		    		    $date)
+                "/>
+            </xsl:when>
+            <xsl:when test="substring-before(substring-after(sort-identifier, '-'), '-') = '0447' and string-length(sort-identifier) = 19">
+		        <xsl:value-of select="
+	        		concat(
+		        		substring-before(facet-sidebartitle, '::'),
+		    		    ', ',
+		    		    $date)
+                "/>
+            </xsl:when>
+            <xsl:when test="substring-before(substring-after(sort-identifier, '-'), '-') = '0447' and string-length(sort-identifier) = 22">
+		        <xsl:value-of select="
+	        		concat(
+		        		substring-before(facet-sidebartitle, '::'),
+		    		    ', ',
+		    		    $date,
+                                    ', Session ',
+                                    substring(sort-identifier, 22, 1))
+                "/>
+            </xsl:when>
             <xsl:when test="$number = 0">
 		        <xsl:value-of select="
 	        		concat(
