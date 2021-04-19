@@ -232,6 +232,10 @@ if (array_key_exists('facet-date', $_GET)) {
 if (array_key_exists('keyword', $_GET)) {
 	$clean['keyword'] = stripslashes($_GET['keyword']);
 }
+// remove surrounding quotes from keyword searches, since these searches
+// are all exact phrase anyway.
+$clean['keyword'] = trim($clean['keyword'], '"');
+$clean['keyword'] = trim($clean['keyword'], "'");
 if (array_key_exists('startDoc', $_GET)) {
 	$clean['startDoc'] = stripslashes($_GET['startDoc']);
 }
