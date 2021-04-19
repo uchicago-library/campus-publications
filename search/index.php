@@ -294,7 +294,7 @@ if ($xml->load($url) == false) {
           </ul>
         <?php else: ?>
            <ul class="expandable">
-             <li><a href="/search/?f1-title=Cap and Gown">Cap and Gown (1895-1958)</a></li>
+             <li><a href="/search/?f1-title=Cap and Gown">Cap and Gown (1895-1969)</a></li>
              <li><a href="/search/?f1-title=Daily Maroon">Daily Maroon (1902-1987)</a></li>
           </ul>
         <?php endif; ?>
