@@ -11,7 +11,11 @@ foreach ($params as $param) {
 }
 
 if (array_key_exists('docId', $GET)) {
-	$clean['docId'] = $GET['docId'];
+    if (preg_match('/^mvol-\d{4}-\d{4}-[0-9A-Z]{4}(-\d{2})?$/', $GET['docId']) === 1) {
+	    $clean['docId'] = $GET['docId'];
+    } else {
+        die();
+    }
 }
 
 if (preg_match('/^mvol-[0-9]{4}$/', $clean['docId']) === 1) {
