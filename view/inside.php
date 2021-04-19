@@ -150,10 +150,10 @@ function get_meta($xml) {
  */
 
 $clean = array();
-$clean['callback'] = $_GET['callback'];
-$clean['docId'] = $_GET['docId'];
-$clean['q'] = $_GET['q'];
-$clean['query-join'] = $_GET['query-join'];
+
+foreach (array('callback', 'docId', 'q', 'query-join') as $k) {
+    $clean[$k] = htmlspecialchars($_GET[$k], ENT_QUOTES, 'UTF-8');
+}
 
 /*
  * MAIN 
