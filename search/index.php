@@ -16,49 +16,6 @@ function has_search_results($xml) {
 	return ($xml->getElementsByTagName('docHit')->length != 0);
 }
 
-function get_browse($xml, $category) {
-	$x = new DOMDocument();
-	if ($x->load('browse.xsl') == false) {
-		die('problem with browse.xsl');
-	}
-	$xsl = new XSLTProcessor();
-	$xsl->setParameter('', 'category', $category);
-	$xsl->importStylesheet($x);
-	return $xsl->transformToXML($xml);
-/*
-	$xp = new DOMXPath($xml);
-
-	$docHits = array();
-	foreach ($xp->query('/crossQueryResult/docHit') as $d) {
-		$title = array_pop(explode(':', $xp->query('meta/facet-category', $d)->item(0)->nodeValue));
-		if (!array_key_exists($title, $docHits)) {
-			$docHits[$title] = array();
-		}
-		
-		$docHits[$title][] = $xp->query('meta/year', $d)->item(0)->nodeValue;
-	}
-
-	printf("<ul>");
-	foreach ($xp->query('/crossQueryResult/facet[@field="facet-category"]/group[@value="university"]/group') as $g) {
-		$value = $g->getAttribute('value');
-
-		$years = $docHits[$value];
-		sort($years);
-
-		$startyear = $years[0];
-		$endyear = $years[count($years) - 1];
-		if ($startyear != $endyear) {
-			$yearstring = sprintf("%d - %d", $startyear, $endyear);
-		} else {
-			$yearstring = sprintf("%d", $startyear);
-		}
-			
-		printf("<li><a href='/search/?f1-category=university%3a%3a%s'>%s (%s)</a></li>", urlencode($value), $value, $yearstring);
-	}
-	printf("</ul>");
-*/
-}
-
 function get_browse_date($xml) {
 	$x = new DOMDocument();
 	if ($x->load('browsedate.xsl') == false) {
@@ -129,14 +86,24 @@ function get_facets($xml) {
             $params['f1-title'] = "University Record";
         }
         $html .= sprintf("<p><a href='/search?%s'>&lt; any date</a></p>", http_build_query($params));
-        $html .= sprintf("<h2>%s</h2>", $nl->item(0)->getAttribute('value'));
+        $d = explode('::', $nl->item(0)->getAttribute('value'));
+        $d = array_pop($d);
+        $html .= sprintf("<h2>%s</h2>", $d);
     // there is no f1-date param. 
     } else {
         $html .= "<h2>Dates</h2>";
         $html .= "<ul>";
-        $nl = $xp->query('/crossQueryResult/facet[@field="facet-date"]/group');
+        if ($params['f1-title'] == 'Daily Maroon') {
+            $nl = $xp->query('/crossQueryResult/facet[@field="facet-date"]/group/group');
+        } else {
+            $nl = $xp->query('/crossQueryResult/facet[@field="facet-date"]/group');
+        }
         foreach ($nl as $n) {
-            $href = sprintf("/search?%s", http_build_query(array_merge($params, array('f1-date' => $n->getAttribute('value')))));
+            if ($params['f1-title'] == 'Daily Maroon') {
+                $href = sprintf("/search?%s", http_build_query(array_merge($params, array('f1-date' => sprintf("%s::%s", $n->parentNode->getAttribute('value'), $n->getAttribute('value'))))));
+            } else {
+                $href = sprintf("/search?%s", http_build_query(array_merge($params, array('f1-date' => $n->getAttribute('value')))));
+            }
             $text = sprintf("%s (%d)", $n->getAttribute('value'), $n->getAttribute('totalDocs'));
             $html .= sprintf("<li><a href='%s'>%s</a></li>", $href, $text);
         }
@@ -283,6 +250,7 @@ if (array_key_exists('browse-category', $clean) || array_key_exists('browse-date
 $params = implode(";", $p);
 
 $url = sprintf("%ssearch?%s", $config['xtf'], $params);
+//die($url);
 
 $xml = new DOMDocument();
 if ($xml->load($url) == false) {
@@ -318,7 +286,22 @@ if ($xml->load($url) == false) {
 				}
 			?>
 		</h1>
-		<?php print get_browse($xml, $clean['browse-category']); ?>
+        <?php if ($clean['browse-category'] == 'university'): ?>
+           <ul class="expandable">
+             <li><a href="/search/?f1-title=Medicine on the Midway">Medicine on the Midway (1944-1981)</a></li>
+             <li><a href="/search/?f1-title=Quarterly Calendar">Quarterly Calendar (1892-1896)</a></li>
+             <li><a href="/search/?f1-title=University Record">University Record (1896-1908)</a></li>
+             <li><a href="/search/?f1-title=University Record (New Series)">University Record (New Series) (1915-1933)</a></li>
+             <li><a href="/search/?f1-title=University of Chicago Convocation Programs">University of Chicago Convocation Programs (1893-2019)</a></li>
+             <li><a href="/search/?f1-title=University of Chicago Magazine">University of Chicago Magazine (1908-1995)</a></li>
+             <li><a href="/search/?f1-title=University of Chicago Record">University of Chicago Record (1967-1981)</a></li>
+          </ul>
+        <?php else: ?>
+           <ul class="expandable">
+             <li><a href="/search/?f1-title=Cap and Gown">Cap and Gown (1895-1969)</a></li>
+             <li><a href="/search/?f1-title=Daily Maroon">Daily Maroon (1902-1987)</a></li>
+          </ul>
+        <?php endif; ?>
 	</div><!--/span8-->
 
 <?php elseif (array_key_exists('browse-date', $clean)): ?>

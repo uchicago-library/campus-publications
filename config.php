@@ -6,9 +6,16 @@
  * them.
  */
 
+// original development backend:
+//'xtf' => 'http://xtf.lib.uchicago.edu:8180/campub/'
+
+// original production backend:
+// 'xtf' => 'http://campub-xtf.lib.uchicago.edu/xtf/',
+
+// route connections to the XTF backend through this server to avoid
+// http/https issues.
 $config = array(
-    #'xtf' => 'http://xtf.lib.uchicago.edu:8180/campub/'
-    'xtf' => 'http://campub-xtf.lib.uchicago.edu/xtf/',
+    'xtf' => 'https://campub.lib.uchicago.edu/campub/'
 );
 
 ?>

@@ -11,7 +11,26 @@ foreach ($params as $param) {
 }
 
 if (array_key_exists('docId', $GET)) {
-	$clean['docId'] = $GET['docId'];
+    if (preg_match('/^mvol-\d{4}-\d{4}-[0-9A-Z]{4}(-\d{2})?$/', $GET['docId']) === 1) {
+	    $clean['docId'] = $GET['docId'];
+    } else {
+        die();
+    }
+}
+
+if (preg_match('/^mvol-[0-9]{4}$/', $clean['docId']) === 1) {
+    $urls = array(
+        'mvol-0001' => 'Cap and Gown',
+        'mvol-0002' => 'University of Chicago Magazine',
+        'mvol-0004' => 'Daily Maroon',
+        'mvol-0005' => 'Quarterly Calendar',
+        'mvol-0007' => 'University Record',
+        'mvol-0445' => 'University Record (New Series)',
+        'mvol-0446' => 'University of Chicago Record',
+        'mvol-0447' => 'University of Chicago Convocation Programs',
+        'mvol-0503' => 'Medicine on the Midway'
+    );
+    header(sprintf("Location: /search?f1-title=%s", urlencode($urls[$clean['docId']])));
 }
 
 ?>
@@ -31,6 +50,8 @@ if (array_key_exists('docId', $GET)) {
 	<script type="text/javascript" src="/script/bookreader2/jquery.ui.ipad.js"></script>
 	<script type="text/javascript" src="/script/bookreader2/jquery.bt.min.js"></script>
 	<script type="text/javascript" src="/script/bookreader2/BookReader.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-98210151-1"></script>
+    <script src="/script/ga.js" type="text/javascript"></script>
 	<link rel="shortcut icon" href="icons/default/favicon.ico" />
 </head>
 <body>

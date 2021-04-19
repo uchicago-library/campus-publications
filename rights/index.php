@@ -23,13 +23,13 @@ included with any material used.</p>
 Chicago Library. For permission to copy or use any part of the University of
 Chicago Campus Publications for any commercial purposes, please contact:</p>
 
-<p>Special Collections Research Center<br/>
+<p>Hanna Holborn Gray Special Collections Research Center<br/>
 University of Chicago Library<br/>
 1100 E. 57th Street<br/>
 Chicago, Illinois 60637<br/>
 Fax: (773) 702-3728</p>
 
-<p><a href="http://www.lib.uchicago.edu/e/ask/SCRC.html">Contact the Special Collections Research Center</a>.</p>
+<p><a href="http://www.lib.uchicago.edu/e/ask/SCRC.html">Contact the Hanna Holborn Gray Special Collections Research Center</a>.</p>
 
 </div><!--/span9-->
 

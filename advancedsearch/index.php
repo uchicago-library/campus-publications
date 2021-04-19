@@ -5,7 +5,8 @@ require_once('../config.php');
 function get_checkboxes() {
     global $config;
 	$xml = new DOMDocument();
-	$xml->load(sprintf("%ssearch?browse-category=university&debugStep=4b", $config['xtf']));
+	//$xml->load(sprintf("%ssearch?browse-category=university&debugStep=4b", $config['xtf']));
+	$xml->load(sprintf("%ssearch?browse-category=all&debugStep=4b", $config['xtf']));
 
 	$x = new DOMDocument();
 	$x->load("advanced.xsl");
