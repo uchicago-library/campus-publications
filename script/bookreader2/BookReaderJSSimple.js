@@ -502,7 +502,8 @@ BookReader.prototype.initToolbar = function(mode, ui) {
         var image_number = bookreaderJSON['pages'][index]['imgFile'];
         image_number = image_number.substring(image_number.length - 8).substring(0, 4);
 		// return 'http://165.227.109.181:5000/' + id + '_' + image_number + '/jpg?width=808&height=1024';
-		return 'http://xtf.lib.uchicago.edu:8180/campub/data/bookreader/' + id + '/0000' + image_number + '.jpg';
+		//return 'http://xtf.lib.uchicago.edu:8180/campub/data/bookreader/' + id + '/0000' + image_number + '.jpg';
+		return 'https://campub.lib.uchicago.edu/campub/data/bookreader/' + id + '/0000' + image_number + '.jpg';
 	}
 
 	br.getPageSide = function(index) {
