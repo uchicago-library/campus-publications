@@ -155,6 +155,10 @@ foreach (array('callback', 'docId', 'q', 'query-join') as $k) {
     $clean[$k] = htmlspecialchars($_GET[$k], ENT_QUOTES, 'UTF-8');
 }
 
+if (array_key_exists('q', $clean)) {
+    $clean['q'] = str_replace('&quot;', '', $clean['q']);
+}
+
 /*
  * MAIN 
  */

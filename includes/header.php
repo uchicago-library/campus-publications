@@ -11,8 +11,8 @@
 					
 				<form action="/search/">
 					<legend style="display: none;">Search all campus publications</legend>
-					<label style="display: none;" for="keyword">Keyword</label>
-					<input id="keyword" name="keyword" placeholder="Search all campus publications" type="text" />
+					<label style="display: none;" for="text">Keyword</label>
+					<input id="text" name="text" placeholder="Search all campus publications" type="text" />
 					<p id="advancedsearchlink"><a href="/advancedsearch/">Advanced Search</a></p>
 				</form>
 			</div>

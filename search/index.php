@@ -59,7 +59,7 @@ function get_facets_old($xml) {
 	return $xsl->transformToXML($xml);
 }
 
-function get_facets($xml) {
+function get_facets($xml, $clean) {
     $xp = new DOMXPath($xml);
 
     $params = array();
@@ -77,14 +77,20 @@ function get_facets($xml) {
         $params['keyword'] = $nl->item(0)->getAttribute('value');
     }
 
+    if ($clean['text']) {
+        $params['text'] = $clean['text'];
+    }
+
     // check to see if there is an f1-date parameter. 
     $nl = $xp->query('/crossQueryResult/parameters/param[@name="f1-date"]'); 
 
     // there is an f1-date param. 
     if ($nl->length > 0) {
+        /*
         if (count(array_keys($params)) == 0) {
             $params['f1-title'] = "University Record";
         }
+        */
         $html .= sprintf("<p><a href='/search?%s'>&lt; any date</a></p>", http_build_query($params));
         $d = explode('::', $nl->item(0)->getAttribute('value'));
         $d = array_pop($d);
@@ -292,7 +298,7 @@ if ($xml->load($url) == false) {
              <li><a href="/search/?f1-title=Quarterly Calendar">Quarterly Calendar (1892-1896)</a></li>
              <li><a href="/search/?f1-title=University Record">University Record (1896-1908)</a></li>
              <li><a href="/search/?f1-title=University Record (New Series)">University Record (New Series) (1915-1933)</a></li>
-             <li><a href="/search/?f1-title=University of Chicago Convocation Programs">University of Chicago Convocation Programs (1893-2019)</a></li>
+             <li><a href="/search/?f1-title=University of Chicago Convocation Programs">University of Chicago Convocation Programs (1893-2021)</a></li>
              <li><a href="/search/?f1-title=University of Chicago Magazine">University of Chicago Magazine (1908-1995)</a></li>
              <li><a href="/search/?f1-title=University of Chicago Record">University of Chicago Record (1967-1981)</a></li>
           </ul>
@@ -325,7 +331,7 @@ if ($xml->load($url) == false) {
 
 	<?php if (has_search_results($xml)): ?>
 	<div class="span3">
-		<?php print get_facets($xml); ?>
+		<?php print get_facets($xml, $clean); ?>
 	</div>
 	<div class="span9">
         <?php $title = get_keyword($xml); if ($title !== ''): $title = sprintf("Search results for \"%s\"", $title); else: $title = 'Search results'; endif; ?>
