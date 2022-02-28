@@ -17,7 +17,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template match="meta">
 	<xsl:variable name="id" select="sort-identifier"/>
-    <!-- 'http://xtf.lib.uchicago.edu:8180/campub/data/bookreader/', -->
 	<xsl:variable name="src" select="
 		concat(
             'https://campub.lib.uchicago.edu/campub/data/bookreader/',
