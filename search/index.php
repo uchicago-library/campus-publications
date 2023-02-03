@@ -306,6 +306,7 @@ if ($xml->load($url) == false) {
            <ul class="expandable">
              <li><a href="/search/?f1-title=Cap and Gown">Cap and Gown (1895-1969)</a></li>
              <li><a href="/search/?f1-title=Daily Maroon">Daily Maroon (1902-1987)</a></li>
+             <li><a href="/search/?f1-title=University of Chicago Weekly">University of Chicago Weekly (1892-1899)</a></li>
           </ul>
         <?php endif; ?>
 	</div><!--/span8-->

@@ -44,6 +44,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
             <xsl:when test="$value='University Record (New Series)'"> (1915-1933)</xsl:when>
             <xsl:when test="$value='University of Chicago Magazine'"> (1908-1995)</xsl:when>
             <xsl:when test="$value='University of Chicago Record'"> (1967-1981)</xsl:when>
+            <xsl:when test="$value='University of Chicago Weekly'"> (1892-1899)</xsl:when>
         </xsl:choose>
     </a>
 </li>

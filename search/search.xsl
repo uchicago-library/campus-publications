@@ -113,7 +113,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     </xsl:variable>
 	<xsl:variable name="title">
         <xsl:choose>
-            <xsl:when test="substring-before(substring-after(sort-identifier, '-'), '-') = '0004'">
+            <xsl:when test="substring-before(substring-after(sort-identifier, '-'), '-') = '0004' or substring-before(substring-after(sort-identifier, '-'), '-') = '0448'">
 		        <xsl:value-of select="
 	        		concat(
 		        		substring-before(facet-sidebartitle, '::'),

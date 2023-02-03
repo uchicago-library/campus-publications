@@ -28,6 +28,7 @@ if (preg_match('/^mvol-[0-9]{4}$/', $clean['docId']) === 1) {
         'mvol-0445' => 'University Record (New Series)',
         'mvol-0446' => 'University of Chicago Record',
         'mvol-0447' => 'University of Chicago Convocation Programs',
+        'mvol-0448' => 'University of Chicago Weekly',
         'mvol-0503' => 'Medicine on the Midway'
     );
     header(sprintf("Location: /search?f1-title=%s", urlencode($urls[$clean['docId']])));

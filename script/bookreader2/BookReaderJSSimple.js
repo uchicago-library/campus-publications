@@ -574,7 +574,7 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 			'12': 'December'
 		};
 
-        if (bookreaderJSON.ia.startsWith('mvol-0004') || bookreaderJSON.ia.startsWith('mvol-0447')) {
+        if (bookreaderJSON.ia.startsWith('mvol-0004') || bookreaderJSON.ia.startsWith('mvol-0447') || bookreaderJSON.ia.startsWith('mvol-0448')) {
             var date = bookreaderJSON.meta['human-readable-date'];
 
 		    var dl = $('<dl style="margin-bottom: 20px;"></dl>');
@@ -935,7 +935,7 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 	);
 
 	/* Add volume to breadcrumbs. */
-    if (!bookreaderJSON.ia.startsWith('mvol-0004') && !bookreaderJSON.ia.startsWith('mvol-0447')) {
+    if (!bookreaderJSON.ia.startsWith('mvol-0004') && !bookreaderJSON.ia.startsWith('mvol-0447') && !bookreaderJSON.ia.startsWith('mvol-0448')) {
 	    $('#breadcrumbs').append(
 		    ", Vol. " + bookreaderJSON['meta']['relation'].split(':')[0].replace(/^0*/, '')
 	    );
@@ -943,7 +943,7 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 
 	/* Optionally, add issue to breadcrumbs. */
 	//var iss = bookreaderJSON['meta']['relation'].split(':')[1];
-    if (!bookreaderJSON.ia.startsWith('mvol-0004') && !bookreaderJSON.ia.startsWith('mvol-0447')) {
+    if (!bookreaderJSON.ia.startsWith('mvol-0004') && !bookreaderJSON.ia.startsWith('mvol-0447') && !bookreaderJSON.ia.startsWith('mvol-0448')) {
         var iss = parseInt(getUrlVars()['docId'].split('-').pop(), 10);
 	    if (iss != '0') {
 		    $('#breadcrumbs').append(
