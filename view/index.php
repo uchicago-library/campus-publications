@@ -51,8 +51,15 @@ if (preg_match('/^mvol-[0-9]{4}$/', $clean['docId']) === 1) {
 	<script type="text/javascript" src="/script/bookreader2/jquery.ui.ipad.js"></script>
 	<script type="text/javascript" src="/script/bookreader2/jquery.bt.min.js"></script>
 	<script type="text/javascript" src="/script/bookreader2/BookReader.js"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-98210151-1"></script>
-    <script src="/script/ga.js" type="text/javascript"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-EWT5B3NZ15"></script>
+    <script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-EWT5B3NZ15');
+		gtag('set', 'content_group', 'digital_collections');
+    </script>
+	<script src="/script/ga.js" type="text/javascript"></script>
 	<link rel="shortcut icon" href="icons/default/favicon.ico" />
 </head>
 <body>

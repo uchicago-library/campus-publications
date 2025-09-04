@@ -4,7 +4,6 @@
 	<link href="/css/index.css" type="text/css" rel="stylesheet" />
 	<script src="/script/jquery-3.1.1.min.js" type="text/javascript"></script>
 	<script src="/script/index.js" type="text/javascript"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-98210151-1"></script>
 	<script src="/script/ga.js" type="text/javascript"></script>
     <!-- Google tag (gtag.js) --> 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EWT5B3NZ15"></script>

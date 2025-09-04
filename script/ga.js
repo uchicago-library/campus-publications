@@ -1,27 +1,56 @@
 $(document).ready(function() {
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-98210151-1', {
-    'custom_map': {
-      'dimension1': 'Subnetclass'
-    }
-  });
-
+  // Copilot says yes, but I don't think we need this. vmg
+  // window.dataLayer = window.dataLayer || [];
+  // function gtag(){dataLayer.push(arguments);}
+  // gtag('js', new Date());
+ 
   // get subnetclass (staff, etc.)
   var q = 'https://www.lib.uchicago.edu/cgi-bin/subnetclass?jsoncallback=?';
   $.getJSON(q, function(data) {
-    gtag('event', 'Subnetclass', data);
+    // gtag('set', { subnetclass: data });
+    // debugging for now
+    console.log('subnetclass: ' + data); 
   }); 
 
-  // pageturner event.
+  // Engagement events.
   if (window.location.href.indexOf('/view/') !== -1) {
-    var mvol = window.location.href.match(/docId=([^#]*)#/)[1];
-    gtag('event', 'click', {
-      'event_category': 'pageTurner',
-      'event_label': mvol,
-      'value': 1
+    // Helper for engagement events
+    function triggerEngagement(label) {
+      gtag('event', 'engagement', { 'event_label':label });
+      // console.log('engagement event triggered: ' + label);
+    }
+
+    // Engagement events, page turn, change view, info, share, etc
+    const buttons = document.querySelectorAll('button.BRicon');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const label = btn.getAttribute('title');
+        if (label) triggerEngagement(label);
+      }, false);
     });
+
+    // Engagement event for page slider interactions
+    const brpager = document.getElementById('BRpager');
+    if (brpager) {
+      brpager.addEventListener('click', function() {
+        triggerEngagement('Page Slider');
+      }, false);
+    }
+
+    // Detect submissions to 'form#jumptopageform'
+    const jumpForm = document.querySelector('form#jumptopageform');
+    if (jumpForm) {
+      jumpForm.addEventListener('submit', function() {
+        triggerEngagement('Jump To Page Form');
+      }, false);
+    }
+
+    // Detect submissions to 'form#booksearch'
+    const searchForm = document.querySelector('form#booksearch');
+    if (searchForm) {
+      searchForm.addEventListener('submit', function() {
+        triggerEngagement('Book Search Form');
+      }, false);
+    }
   }
 });
