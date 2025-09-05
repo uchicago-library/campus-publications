@@ -621,12 +621,14 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 		jInfoDiv.find('.BRfloatMeta').append('<p>See the <a href="/rights/">Rights and Reproductions</a> page for information about using this digital volume.</p>');
 		jInfoDiv.find('.BRfloatMeta').append('<h4>Other formats</h4>');
 		jInfoDiv.find('.BRfloatMeta').append(
-			'<p><a href="/text/?docId=' +
+			'<p>' +
+			'<a href="/text/?docId=' +
 			bookreaderJSON.meta.identifier +
-			'">Plain Text</a> | ' +
+			'" data-ga-action="file_download" data-ga-label="Plain Text">Plain Text</a> | ' +
 			'<a href="/pdf/?docId=' +
 			bookreaderJSON.meta.identifier +
-			'">PDF</a></p>');
+			'" data-ga-action="file_download" data-ga-label="PDF">PDF</a>' +
+			'</p>');
 	}
 
 	br.addSearchResult = function(queryString, pageIndex) {

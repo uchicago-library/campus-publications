@@ -7,9 +7,9 @@ $(document).ready(function() {
   // get subnetclass (staff, etc.)
   var q = 'https://www.lib.uchicago.edu/cgi-bin/subnetclass?jsoncallback=?';
   $.getJSON(q, function(data) {
-    // gtag('set', { subnetclass: data });
+    gtag('set', { subnetclass: data });
     // debugging for now
-    console.log('subnetclass: ' + data); 
+    console.log('subnetclass: ' + data); // > subnetclass: Campus, Non-Library Staff
   }); 
 
   // Engagement events.
@@ -52,5 +52,15 @@ $(document).ready(function() {
         triggerEngagement('Book Search Form');
       }, false);
     }
+
+    // Detect clicks on links with data-ga-label for file downloads (no jQuery)
+    // Attach click event listeners directly to elements with data-ga-action="file_download"
+    var links = document.querySelectorAll('a[data-ga-action="file_download"]');
+    links.forEach(function(link) {
+      link.addEventListener('click', function() {
+        var label = link.getAttribute('data-ga-label');
+        gtag('event', 'file_download', { 'event_label': label });
+      });
+    });
   }
 });
