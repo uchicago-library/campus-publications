@@ -1,4 +1,4 @@
-$(window).on('load', function() {
+window.onload = function() {
   // Copilot says yes, but I don't think we need this. vmg
   // window.dataLayer = window.dataLayer || [];
   // function gtag(){dataLayer.push(arguments);}
