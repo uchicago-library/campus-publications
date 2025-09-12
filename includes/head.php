@@ -4,6 +4,8 @@
 	<link href="/css/index.css" type="text/css" rel="stylesheet" />
 	<script src="/script/jquery-3.1.1.min.js" type="text/javascript"></script>
 	<script src="/script/index.js" type="text/javascript"></script>
+    <link rel="shortcut icon" href="http://www.lib.uchicago.edu/favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="shortcut icon" href="https://www.lib.uchicago.edu/favicon.ico" type="image/vnd.microsoft.icon" />
     <!-- Google tag (gtag.js) --> 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EWT5B3NZ15"></script>
     <script>

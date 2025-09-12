@@ -22,6 +22,7 @@ window.onload = function() {
         if (links.length > 0) {
           callback(links);
         } else if (Date.now() - start < timeout) {
+          console.log('Waiting for download links...');
           setTimeout(check, interval);
         }
       }

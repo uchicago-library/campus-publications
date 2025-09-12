@@ -59,8 +59,6 @@ if (preg_match('/^mvol-[0-9]{4}$/', $clean['docId']) === 1) {
 		gtag('config', 'G-EWT5B3NZ15');
 		gtag('set', 'content_group', 'digital_collections');
     </script>
-	<script src="/script/ga.js" type="text/javascript"></script>
-	<link rel="shortcut icon" href="icons/default/favicon.ico" />
 </head>
 <body>
 	<ul id="skip">
