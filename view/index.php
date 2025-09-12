@@ -74,5 +74,6 @@ if (preg_match('/^mvol-[0-9]{4}$/', $clean['docId']) === 1) {
 		</noscript>
 	</div>
 	<script type="text/javascript" src="/script/bookreader2/BookReaderJSSimple.js"></script>
+	<script src="/script/ga.js" type="text/javascript"></script>
 </body>
 </html>
