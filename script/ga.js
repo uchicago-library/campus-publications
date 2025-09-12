@@ -27,6 +27,7 @@ $(document).ready(function() {
 
     // Engagement events, page turn, change view, info, share, etc
     const buttons = document.querySelectorAll('button.BRicon');
+    console.log('Found buttons for engagement tracking:', buttons.length);
     buttons.forEach(btn => {
       console.log('Setting up engagement tracking for button:', btn);
       btn.addEventListener('click', function() {
@@ -87,6 +88,8 @@ $(document).ready(function() {
     }
 
     links.forEach(function(link) {
+      var label = link.getAttribute('data-ga-label');
+      console.log('Setting up download tracking for link:', label);
       // Left click
       link.addEventListener('click', function(e) {
         console.log('Link clicked:', link.href);
