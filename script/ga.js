@@ -7,9 +7,9 @@ window.onload = function() {
   // get subnetclass (staff, etc.)
   var q = 'https://www.lib.uchicago.edu/cgi-bin/subnetclass?jsoncallback=?';
   $.getJSON(q, function(data) {
-    gtag('set', { subnetclass: data });
     // debugging for now
     console.log('subnetclass: ' + data); // > subnetclass: Campus, Non-Library Staff
+    gtag('set', { subnetclass: data });
   }); 
 
   // Custom engagement events
@@ -35,6 +35,7 @@ window.onload = function() {
       // Helper for engagement events
       function triggerEngagement(label) {
         // logging engagement events as clicks
+        console.log('click event triggered: ' + label);
         gtag('event', 'click', { 'event_label':label });
       }
 
@@ -74,6 +75,7 @@ window.onload = function() {
       // Helper to send gtag file download events and delay navigation
       function handleDownloadEvent(e, eventType, link) {
         var label = link.getAttribute('data-ga-label');
+        console.log('File download triggered: ' + label);
         gtag('event', 'file_download', { 'event_label': label });
         // Delay navigation for left/middle click
         if (link.href && (eventType === 'click' || eventType === 'auxclick')) {
