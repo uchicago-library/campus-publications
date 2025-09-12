@@ -20,7 +20,7 @@ function get_checkboxes() {
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>The University of Chicago Campus Publications</title>
+	<title>Advanced Search : Campus Publications : The University of Chicago</title>
 	<?php include "../includes/head.php"; ?>
 </head>
 <body>

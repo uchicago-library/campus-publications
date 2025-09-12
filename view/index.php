@@ -40,7 +40,9 @@ if (preg_match('/^mvol-[0-9]{4}$/', $clean['docId']) === 1) {
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title></title>
+    <link rel="shortcut icon" href="http://www.lib.uchicago.edu/favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="shortcut icon" href="https://www.lib.uchicago.edu/favicon.ico" type="image/vnd.microsoft.icon" />
+	<title>Item View : Campus Publications : The University of Chicago</title>
 	<link rel="stylesheet" type="text/css" href="/css/bookreader2/BookReader.css" />
 	<link rel="stylesheet" type="text/css" href="/css/bookreader2/BookReaderDemo.css" />
 	<script type="text/javascript" src="/script/bookreader2/jquery-1.4.2.min.js"></script>
