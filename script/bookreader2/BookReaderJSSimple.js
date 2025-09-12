@@ -627,7 +627,7 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 			'" data-ga-action="file_download" data-ga-label="Plain Text">Plain Text</a> | ' +
 			'<a href="/pdf/?docId=' +
 			bookreaderJSON.meta.identifier +
-			'" data-ga-action="file_download" data-ga-label="PDF">PDF</a>' +
+			'" data-ga-action="file_download" data-ga-label="PDF" download>PDF</a>' +
 			'</p>');
 	}
 

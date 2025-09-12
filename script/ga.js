@@ -9,43 +9,37 @@ window.onload = function() {
   $.getJSON(q, function(data) {
     gtag('set', { subnetclass: data });
     // debugging for now
-    console.log('gtag is ready?', typeof gtag === 'function');
     console.log('subnetclass: ' + data); // > subnetclass: Campus, Non-Library Staff
   }); 
 
-  // Engagement events.
+  // Custom engagement events
   if (window.location.href.indexOf('/view/') !== -1) {
+    // Wait for download links to be present in the DOM
     function waitForDownloadLinks(callback, timeout = 5000, interval = 100) {
       const start = Date.now();
       function check() {
         const links = document.querySelectorAll('a[data-ga-action="file_download"]');
         if (links.length > 0) {
-          console.log('Found download links for tracking:', links.length);
           callback(links);
         } else if (Date.now() - start < timeout) {
-          console.log('Waiting for download links...');
           setTimeout(check, interval);
         }
       }
       check();
     }
 
+    // Once links are found, set up event listeners
     waitForDownloadLinks(function(links) {
-      console.log('gtag is ready?', typeof gtag === 'function');
-      console.log('page is view');
 
       // Helper for engagement events
       function triggerEngagement(label) {
-        console.log('gtag is ready?', typeof gtag === 'function');
-        console.log('sending engagement event: ' + label);
+        // logging engagement events as clicks
         gtag('event', 'click', { 'event_label':label });
       }
 
       // Engagement events, page turn, change view, info, share, etc
       const buttons = document.querySelectorAll('button.BRicon');
-      console.log('Found buttons for engagement tracking:', buttons.length);
       buttons.forEach(btn => {
-        console.log('Setting up engagement tracking for button:', btn);
         btn.addEventListener('click', function() {
           const label = btn.getAttribute('title');
           if (label) triggerEngagement(label);
@@ -55,7 +49,6 @@ window.onload = function() {
       // Engagement event for page slider interactions
       const brpager = document.getElementById('BRpager');
       if (brpager) {
-        console.log('Setting up page slider tracking');
         brpager.addEventListener('click', function() {
           triggerEngagement('Page Slider');
         }, false);
@@ -64,7 +57,6 @@ window.onload = function() {
       // Detect submissions to 'form#jumptopageform'
       const jumpForm = document.querySelector('form#jumptopageform');
       if (jumpForm) {
-        console.log('Setting up jump to page form tracking');
         jumpForm.addEventListener('submit', function() {
           triggerEngagement('Jump To Page Form');
         }, false);
@@ -73,21 +65,14 @@ window.onload = function() {
       // Detect submissions to 'form#booksearch'
       const searchForm = document.querySelector('form#booksearch');
       if (searchForm) {
-        console.log('Setting up book search form tracking');
         searchForm.addEventListener('submit', function() {
           triggerEngagement('Book Search Form');
         }, false);
       }
 
-      // Detect clicks on links with data-ga-label for file downloads (no jQuery)
-      // Attach click event listeners directly to elements with data-ga-action="file_download"
-      console.log('Setting up file download link tracking:', links.length);
-
-      // Helper to send gtag event and delay navigation
+      // Helper to send gtag file download events and delay navigation
       function handleDownloadEvent(e, eventType, link) {
         var label = link.getAttribute('data-ga-label');
-        console.log('gtag is ready?', typeof gtag === 'function');
-        console.log('sending file_download event:', label, 'type:', eventType);
         gtag('event', 'file_download', { 'event_label': label });
         // Delay navigation for left/middle click
         if (link.href && (eventType === 'click' || eventType === 'auxclick')) {
@@ -102,18 +87,15 @@ window.onload = function() {
         }
       }
 
+      // Detect clicks on 'a[data-ga-action="file_download"]'
       links.forEach(function(link) {
-        var label = link.getAttribute('data-ga-label');
-        console.log('Setting up download tracking for link:', label);
         // Left click
         link.addEventListener('click', function(e) {
-          console.log('Link clicked:', link.href);
           handleDownloadEvent(e, 'click', link);
         });
         // Middle mouse (wheel) click
         link.addEventListener('auxclick', function(e) {
           if (e.button === 1) {
-            console.log('Link auxclick clicked:', link.href);
             handleDownloadEvent(e, 'auxclick', link);
           }
         });
